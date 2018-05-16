@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonadeStand", "LemonadeStand\LemonadeStand.csproj", "{4330C5A8-D500-4997-BE8D-816D497B8EAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4330C5A8-D500-4997-BE8D-816D497B8EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4330C5A8-D500-4997-BE8D-816D497B8EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4330C5A8-D500-4997-BE8D-816D497B8EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4330C5A8-D500-4997-BE8D-816D497B8EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC10D87E-2B46-4AFE-9DB2-C7F7210A7A1D}
+	EndGlobalSection
+EndGlobal
