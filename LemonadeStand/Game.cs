@@ -10,10 +10,47 @@ namespace LemonadeStand
 
     {
         public Random rm;
-        public Player pr;
+        private Player pr;
         public UserInterface ui;
-        public Day dy;
+        private Day dy;
+        private List<Weather> forcast;
         private int daysLeft;
+        private Inventory iy;
+        public Player Pr
+        {
+            get
+            {
+                return pr;
+            }
+            set
+            {
+                pr = value;
+            }
+        }
+        public Day Dy
+        {
+            get
+            {
+                return dy;
+            }
+            set
+            {
+                dy = value;
+            }
+        }
+        
+        public List<Weather> Forcast
+        {
+            get
+            {
+                return forcast;
+            }
+            set
+            {
+                forcast = value;
+            }
+        }
+        
         public int GameType
         {
             get
@@ -21,12 +58,22 @@ namespace LemonadeStand
                 return GameType;
             }
         }
+        public Inventory Iy
+        {
+            get
+            {
+                return iy;
+            }
+            set
+            {
+                iy = value;
+            }
+        }
         public List<string> gameLength = new List<string>() { "7","14","30"};
        
 
         public Game(Random r, List<Weather> start)
         {
-            dy = new Day(r, start);
             rm = new Random();
             pr = new Player();
             ui = new UserInterface();
@@ -35,12 +82,16 @@ namespace LemonadeStand
         public void RunGame(Random r, List<Weather> start)
         {
             int counter = daysLeft;
-            dy.Forcast = start;
+            Forcast = start;
             SetGameType();
             Console.Clear();
             while (daysLeft > 0)
-            { 
-                dy.RunDay(r);
+            {
+                dy = new Day(r, Forcast);
+                Forcast = dy.Forcast;
+                Iy = dy.Iy;
+                //dy.RunDay(r);
+                Console.WriteLine(Iy.Money);
                 counter--;
             }    
             Console.ReadKey();

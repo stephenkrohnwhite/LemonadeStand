@@ -9,13 +9,24 @@ namespace LemonadeStand
     class Day
     {
         //Should contain an instantiation of weather, store and inventory
-        Weather wr;
-        Store se;
-        Customer cr;
-        Inventory iy;
-        UserInterface ui;
+        private Weather wr;
+        private Store se;
+        private Customer cr;
+        private Inventory iy;
+        private UserInterface ui;
         private List<Weather> forcast;
         private List<Inventory> stock;
+        public Inventory Iy
+        {
+            get
+            {
+                return iy;
+            }
+            set
+            {
+                iy = value;
+            }
+        }
         public List<Weather> Forcast
         {
             get
@@ -38,13 +49,19 @@ namespace LemonadeStand
                 stock = value;
             }
         }
-        public Day(Random r, List<Weather> initilizer)
+        public Day(Random r, List<Weather> initializer)
         {
             wr = new Weather(r);
             se = new Store();
             cr = new Customer();
             iy = new Inventory();
             ui = new UserInterface();
+            forcast = wr.WeatherForcast(initializer, 7, r);
+            Weather currentWeather = wr.CreateDayWeather(forcast[0], r, 6);
+            ui.DisplayForcast(forcast);
+            GetUserPurchase();
+            Console.ReadKey();
+            ui.DisplayCurrentWeather(currentWeather);
         }
         //method RunDay should generate "today's weather", create a seven day forcast, create a
         //number of customers based on weather conditions
