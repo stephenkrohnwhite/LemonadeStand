@@ -13,8 +13,7 @@ namespace LemonadeStand
         public Player pr;
         public UserInterface ui;
         public Day dy;
-        public Weather wr;
-        private int gameType;
+        private int daysLeft;
         public int GameType
         {
             get
@@ -31,17 +30,20 @@ namespace LemonadeStand
             rm = new Random();
             pr = new Player();
             ui = new UserInterface();
-            wr = new Weather(r);
 
         }
         public void RunGame(Random r, List<Weather> start)
         {
+            int counter = daysLeft;
+            dy.Forcast = start;
             SetGameType();
-            Console.WriteLine(gameType);
-            dy.RunDay(r, start);
-           
+            Console.Clear();
+            while (daysLeft > 0)
+            { 
+                dy.RunDay(r);
+                counter--;
+            }    
             Console.ReadKey();
-            //dy.RunDay(r, /*fill in with returned weatherforcast*/);
         }
         public void SetGameType()
         {
@@ -49,7 +51,7 @@ namespace LemonadeStand
             if (ValidateUserString(selection, gameLength) == true)
             {
                 int option = Int32.Parse(selection);
-                gameType = Int32.Parse(gameLength[option-1]);
+                daysLeft = Int32.Parse(gameLength[option-1]);
             }
             else
             {

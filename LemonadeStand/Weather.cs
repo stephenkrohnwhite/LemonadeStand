@@ -13,7 +13,7 @@ namespace LemonadeStand
         private int temp;
         private int minTemp = 55;
         private int maxTemp = 90;
-     
+       
         public string Conditions
         {
             get
@@ -108,20 +108,20 @@ namespace LemonadeStand
         }
         public List<Weather> WeatherForcast(List<Weather> weatherList, int forcastLength, Random rdm)
         {
-            List<Weather> forcast = new List<Weather>();
+            List<Weather> newForcast = new List<Weather>();
             for (int i = 1; i < forcastLength; i++)
             {
                 if ((ProbabilityScaler(i, rdm)) == 0)
                 {
-                    forcast.Add(weatherList[i]);
+                    newForcast.Add(weatherList[i]);
                 }
                 else
                 {
-                    forcast.Add(new Weather(rdm));
+                    newForcast.Add(new Weather(rdm));
                 }
             }
-            forcast.Add(new Weather(rdm));
-            return forcast;
+            newForcast.Add(new Weather(rdm));
+            return newForcast;
 
         }
         public Weather CreateDayWeather(Weather todayForcast, Random rdm, int probabilityInt)
