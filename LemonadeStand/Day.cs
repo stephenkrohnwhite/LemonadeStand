@@ -49,33 +49,23 @@ namespace LemonadeStand
                 stock = value;
             }
         }
-        public Day(Random r, List<Weather> initializer)
+        public Day(Random r, List<Weather> initializer, Inventory userInventory)
         {
             wr = new Weather(r);
             se = new Store();
             cr = new Customer();
-            iy = new Inventory();
             ui = new UserInterface();
+            iy = userInventory;
             forcast = wr.WeatherForcast(initializer, 7, r);
             Weather currentWeather = wr.CreateDayWeather(forcast[0], r, 6);
             ui.DisplayForcast(forcast);
             GetUserPurchase();
-            Console.ReadKey();
-            ui.DisplayCurrentWeather(currentWeather);
-        }
-        //method RunDay should generate "today's weather", create a seven day forcast, create a
-        //number of customers based on weather conditions
-        //should generate 'market driven' price of goods for the user to purchase
-        public void RunDay(Random r)
-        {
-            forcast = wr.WeatherForcast(forcast, 7, r);
-            Weather currentWeather = wr.CreateDayWeather(forcast[0], r, 6);
-            ui.DisplayForcast(forcast);
-            GetUserPurchase();
-            Console.ReadKey();
-            ui.DisplayCurrentWeather(currentWeather);
             
+            Console.ReadKey();
+            ui.DisplayCurrentWeather(currentWeather);
         }
+        
+        
         public void GetUserPurchase()
         {
             string userSelection = ui.SelectStock(se.Stock);

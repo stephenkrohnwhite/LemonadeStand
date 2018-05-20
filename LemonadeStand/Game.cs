@@ -76,6 +76,7 @@ namespace LemonadeStand
         {
             rm = new Random();
             pr = new Player();
+            iy = new Inventory();
             ui = new UserInterface();
 
         }
@@ -87,7 +88,7 @@ namespace LemonadeStand
             Console.Clear();
             while (daysLeft > 0)
             {
-                dy = new Day(r, Forcast);
+                dy = new Day(r, Forcast, Iy);
                 Forcast = dy.Forcast;
                 Iy = dy.Iy;
                 //dy.RunDay(r);
