@@ -40,6 +40,7 @@ namespace LemonadeStand
             string selection = Console.ReadLine();
             return selection;
         }
+        
         public string SelectStock(List<Products> stock)
         {
             DisplayStock(stock);
@@ -55,11 +56,16 @@ namespace LemonadeStand
                     + stock[i].Quantity + " " + stock[i].Unit);
             }
         }
-        public string DisplayItem(List<Products> stock, string selection)
+        public string DisplayItem(List<Products> stock, int selection)
         {
-            Console.WriteLine("Enter number of cases of " + stock[(Int32.Parse(selection)) - 1].Name + " to purchase.");
+            Console.WriteLine("Enter number of cases of " + stock[selection - 1].Name + " to purchase.");
             string choice = Console.ReadLine();
             return choice;
+        }
+
+        internal void CheckInventory()
+        {
+            throw new NotImplementedException();
         }
     }
 }

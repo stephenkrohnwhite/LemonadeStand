@@ -24,14 +24,22 @@ namespace LemonadeStand
             stock.Add(new Products { Name = "Sugar", Price = 10.00, Quantity = 10.00, Unit="lbs/cs"});
             stock.Add(new Products { Name = "Ice", Price = 10.00, Quantity = 50.00, Unit="lbs/cs" });
         }
+        //Need to fix validator to handle non-numbers
         public bool PurchaseValidator(string input)
         {
             for (int i = 0; i < Stock.Count; i++)
             {
-                if (Int32.Parse(input) - 1 == i)
+                
+                bool result = (Int32.TryParse(input, out int ignore));
+                if (result == false)
+                {
+                    return false;
+                }
+                else if (Int32.Parse(input) - 1 == i)
                 {
                     return true;
                 }
+                
             }
             return false;
         }
