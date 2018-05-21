@@ -116,27 +116,45 @@ namespace LemonadeStand
                     ui.DisplayForcast(Forcast);
                     break;
                 case "2":
-                    GetUserPurchase();
+                    GetUserPurchase(weatherList, userInventory);
                     break;
                 case "3":
-                    ui.CheckInventory();
+                    ui.DisplayUserInventory(Iy);
                     break;
                 default:
                     Console.WriteLine("Please enter valid selection");
                     DayMenu(weatherList, userInventory);
                     break;
             }
+            DayMenu(weatherList, userInventory);
         }
         
-        public void GetUserPurchase()
+        public void GetUserPurchase(List<Weather> weatherList, Inventory userInventory)
         {
             int userSelection = GetUserItem();
-            string purchase = ui.DisplayItem(se.Stock, userSelection);
-            BuyItem(userSelection, purchase);
-            GetUserPurchase();
+            BuyItem(userSelection);
+            ui.DisplayUserInventory(Iy);
+            Console.ReadLine();
+            string option = ui.PurchaseMenu();
+            if (se.StringMenuValidator(option, 2) == true)
+            {
+                switch (option)
+                {
+                    case "1":
+                        GetUserPurchase(weatherList, userInventory);
+                        break;
+                    case "2":
+                        DayMenu(weatherList,userInventory);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
         }
-        public void BuyItem(int userSelection, string purchase)
+        public void BuyItem(int userSelection)
         {
+            string purchase = ui.DisplayItem(se.Stock, userSelection);
             if (se.PurchaseValidator(purchase) == true)
             {
                 string purchaseName = se.Stock[userSelection - 1].Name;
@@ -147,7 +165,8 @@ namespace LemonadeStand
             }
             else
             {
-                BuyItem(userSelection, purchase);
+                Console.WriteLine("Please enter valid selection");
+                BuyItem(userSelection);
             }
         }
         public int GetUserItem()
@@ -165,8 +184,7 @@ namespace LemonadeStand
                 return GetUserItem();
             }
         }
-       
-
+        
         
 
 

@@ -19,7 +19,7 @@ namespace LemonadeStand
         
         public Store()
         {
-            stock.Add(new Products { Name = "Lemon", Price = 5.00, Quantity = 50.00, Unit = "lemons/cs" });
+            stock.Add(new Products { Name = "Lemons", Price = 5.00, Quantity = 50.00, Unit = "lemons/cs" });
             stock.Add(new Products { Name = "Cups", Price = 7.50, Quantity = 100.00, Unit="cups/cs" });
             stock.Add(new Products { Name = "Sugar", Price = 10.00, Quantity = 10.00, Unit="lbs/cs"});
             stock.Add(new Products { Name = "Ice", Price = 10.00, Quantity = 50.00, Unit="lbs/cs" });
@@ -27,19 +27,20 @@ namespace LemonadeStand
         //Need to fix validator to handle non-numbers
         public bool PurchaseValidator(string input)
         {
-            for (int i = 0; i < Stock.Count; i++)
+            bool result = int.TryParse(input, out int inputValue);
+            if (result == false)
             {
-                
-                bool result = (Int32.TryParse(input, out int ignore));
-                if (result == false)
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < Stock.Count; i++)
                 {
-                    return false;
+                     if (inputValue - 1 == i)
+                     {
+                        return true;
+                     }
                 }
-                else if (Int32.Parse(input) - 1 == i)
-                {
-                    return true;
-                }
-                
             }
             return false;
         }
@@ -47,6 +48,26 @@ namespace LemonadeStand
         {
             int result = Int32.Parse(input);
             return result;
+        }
+        public bool StringMenuValidator(string input, int menuLength)
+        {
+            bool result = int.TryParse(input, out int choice);
+            if(result == false)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < menuLength; i++)
+                {
+                    if(choice == i+1)
+                    {
+                        return true;
+                    }
+                   
+                }
+            }
+            return false;
         }
         public double PurchaseQuantity(int input, string itemName)
         {

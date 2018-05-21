@@ -31,7 +31,7 @@ namespace LemonadeStand
         }
         public Inventory()
         {
-            backStock.Add(new Products { Name = "Lemon", Quantity = 0.00, Unit = "lemons" });
+            backStock.Add(new Products { Name = "Lemons", Quantity = 0.00, Unit = "lemons" });
             backStock.Add(new Products { Name = "Cups", Quantity = 0.00, Unit = "cups" });
             backStock.Add(new Products { Name = "Sugar", Quantity = 0.00, Unit = "lbs" });
             backStock.Add(new Products { Name = "Ice", Quantity = 0.00, Unit = "lbs" });
@@ -46,6 +46,7 @@ namespace LemonadeStand
                 }
             }
         }
+
         public void PayForItem(string storeItem, double price, int quantity)
         { 
             for(int i =0; i<backStock.Count; i++)

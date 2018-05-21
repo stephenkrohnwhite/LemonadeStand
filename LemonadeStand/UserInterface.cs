@@ -62,10 +62,19 @@ namespace LemonadeStand
             string choice = Console.ReadLine();
             return choice;
         }
-
-        internal void CheckInventory()
+        public void DisplayUserInventory(Inventory player)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Current inventory:\r\n$"+player.Money+"\r\n");
+            for(int i=0;i<player.BackStock.Count;i++)
+            {
+                Console.WriteLine(i+1+". "+player.BackStock[i].Quantity+" "+player.BackStock[i].Name);
+            }
+        }
+        public string PurchaseMenu()
+        {
+            Console.WriteLine("1. Stay in store\r\n2. Return to main menu");
+            string selection = Console.ReadLine();
+            return selection;
         }
     }
 }
