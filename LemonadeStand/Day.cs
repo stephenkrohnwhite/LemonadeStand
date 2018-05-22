@@ -108,17 +108,21 @@ namespace LemonadeStand
         }
         public void DayMenu(List<Weather> weatherList, Inventory userInventory)
         {
+            Console.Clear();
             string selection = ui.SelectFromList("Please Select from the following list:", menu);
+
             switch(selection)
             {
                 case "1":
                     ui.DisplayForcast(Forcast);
+                    Console.ReadLine();
                     break;
                 case "2":
                     GetUserPurchase(weatherList, userInventory);
                     break;
                 case "3":
                     ui.DisplayUserInventory(Iy);
+                    Console.ReadLine();
                     break;
                 default:
                     Console.WriteLine("Please enter valid selection");
