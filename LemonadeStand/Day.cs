@@ -101,7 +101,6 @@ namespace LemonadeStand
         }
         public void RunDay(List<Weather> weatherForcast, Inventory userInventory, Weather actual)
         {
-            while(Console.ReadKey().Key != ConsoleKey.Escape)
             {
                 DayMenu(forcast, userInventory);
             }
@@ -126,6 +125,7 @@ namespace LemonadeStand
                     DayMenu(weatherList, userInventory);
                     break;
             }
+            Console.Clear();
             DayMenu(weatherList, userInventory);
         }
         
@@ -155,18 +155,31 @@ namespace LemonadeStand
         public void BuyItem(int userSelection)
         {
             string purchase = ui.DisplayItem(se.Stock, userSelection);
-            if (se.PurchaseValidator(purchase) == true)
+            if (se.StringIntValidator(purchase) == true)
             {
                 string purchaseName = se.Stock[userSelection - 1].Name;
                 int purchaseQuantity = se.StringToInt(purchase);
                 double amount = se.PurchaseQuantity(purchaseQuantity, purchaseName);
-                iy.AddToInventory(purchaseName, amount);
-                iy.PayForItem(purchaseName, se.Stock[userSelection - 1].Price, purchaseQuantity);
+                double purchasePrice = se.CalculatePurchasePrice(purchaseQuantity, se.Stock[userSelection - 1]);
+                FinalizePurchase(purchasePrice, amount, userSelection, purchaseQuantity, purchaseName);
             }
             else
             {
                 Console.WriteLine("Please enter valid selection");
                 BuyItem(userSelection);
+            }
+        }
+        public void FinalizePurchase(double price, double amount, int selection, int purchaseQuantity, string purchaseName)
+        {
+            if(Iy.MoneyValidator(price) == true)
+            {
+                iy.AddToInventory(purchaseName, amount);
+                iy.PayForItem(purchaseName, se.Stock[selection - 1].Price, purchaseQuantity);
+            }
+            else
+            {
+                Console.WriteLine("Not enough money to complete transaction");
+                BuyItem(selection);
             }
         }
         public int GetUserItem()

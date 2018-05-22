@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Inventory
     {
         UserInterface ui = new UserInterface();
-        private double money = 50.00;
+        private double money = 200.00;
         private List<Products> backStock = new List<Products>() { };
         public double Money
         {
@@ -46,7 +46,17 @@ namespace LemonadeStand
                 }
             }
         }
-
+        public bool MoneyValidator(double purchasePrice)
+        {
+            if(purchasePrice > Money)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public void PayForItem(string storeItem, double price, int quantity)
         { 
             for(int i =0; i<backStock.Count; i++)

@@ -25,6 +25,23 @@ namespace LemonadeStand
             stock.Add(new Products { Name = "Ice", Price = 10.00, Quantity = 50.00, Unit="lbs/cs" });
         }
         //Need to fix validator to handle non-numbers
+        public bool StringIntValidator(string input)
+        {
+            bool result = int.TryParse(input, out int inputValue);
+            if(result == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public double CalculatePurchasePrice(double amount, Products itemPrice)
+        {
+            double totalPrice = itemPrice.Price * amount;
+            return totalPrice;
+        }
         public bool PurchaseValidator(string input)
         {
             bool result = int.TryParse(input, out int inputValue);
