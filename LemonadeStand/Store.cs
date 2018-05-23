@@ -20,9 +20,9 @@ namespace LemonadeStand
         public Store()
         {
             stock.Add(new Products { Name = "Lemons", Price = 5.00, Quantity = 50.00, Unit = "lemons/cs" });
-            stock.Add(new Products { Name = "Cups", Price = 7.50, Quantity = 100.00, Unit="cups/cs" });
-            stock.Add(new Products { Name = "Sugar", Price = 2.00, Quantity = 5.00, Unit="lbs/cs"});
+            stock.Add(new Products { Name = "Sugar", Price = 2.00, Quantity = 10.00, Unit="lbs/cs"});
             stock.Add(new Products { Name = "Ice", Price = 10.00, Quantity = 50.00, Unit="lbs/cs" });
+            stock.Add(new Products { Name = "Cups", Price = 7.50, Quantity = 100.00, Unit = "cups/cs" });
         }
         //Need to fix validator to handle non-numbers
         public bool StringIntValidator(string input)

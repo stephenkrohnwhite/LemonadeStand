@@ -8,7 +8,18 @@ namespace LemonadeStand
 {
     class UserInterface
     {
-
+        private List<string> yesNo = new List<string>() {"yes", "no"};
+        public List<string> YesNo
+        {
+            get
+            {
+                return yesNo;
+            }
+            set
+            {
+                yesNo = value;
+            }
+        }
         public UserInterface()
         {
 
@@ -19,6 +30,13 @@ namespace LemonadeStand
             string userString = Console.ReadLine();
             return userString;
 
+        }
+        public string GetIngredient(string message, List<string> ingredients)
+        {
+            int choice = int.Parse(message);
+            Console.WriteLine("Please amount of "+ingredients[choice-1]+" to add per pitcher");
+            string userQuantity = Console.ReadLine();
+            return userQuantity;
         }
         public void DisplayForcast(List<Weather> forcast)
         {
@@ -40,7 +58,18 @@ namespace LemonadeStand
             string selection = Console.ReadLine();
             return selection;
         }
-        
+        public string SelectFromListWithEscape(string message, List<string> list)
+        {
+            Console.WriteLine(message);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(i + 1 + ". " + list[i]);
+            }
+            Console.WriteLine((list.Count+1)+". Go Back");
+            string selection = Console.ReadLine();
+            return selection;
+        }
+
         public string SelectStock(List<Products> stock)
         {
             DisplayStock(stock);
@@ -58,7 +87,7 @@ namespace LemonadeStand
         }
         public string DisplayItem(List<Products> stock, int selection)
         {
-            Console.WriteLine("Enter number of cases of " + stock[selection - 1].Name + " to purchase.");
+            Console.WriteLine("Enter number of cases of " + stock[selection - 1].Name + " to add.");
             string choice = Console.ReadLine();
             return choice;
         }
@@ -70,11 +99,28 @@ namespace LemonadeStand
                 Console.WriteLine(i+1+". "+player.BackStock[i].Quantity+" "+player.BackStock[i].Name);
             }
         }
+        public void DisplayUserStock(List<Products> stock)
+        {
+            for (int i = 0; i < stock.Count; i++)
+            {
+                Console.WriteLine(i + 1 + ". " + stock[i].Quantity + " " + stock[i].Name);
+            }
+        }
+        public void DisplayRecipe(List<Products> recipe)
+        {
+            Console.WriteLine("Current Recipe:");
+            for(int i=0; i<recipe.Count;i++)
+            {
+                Console.WriteLine((i+1)+". "+ recipe[i].Name+ ". "
+                    + recipe[i].Quantity+" "+ recipe[i].Unit);
+            }
+        }
         public string PurchaseMenu()
         {
             Console.WriteLine("1. Stay in store\r\n2. Return to main menu");
             string selection = Console.ReadLine();
             return selection;
         }
+        
     }
 }

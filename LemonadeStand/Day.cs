@@ -21,7 +21,8 @@ namespace LemonadeStand
         {
             "Display Weather Forcast",
             "Go to Store",
-            "Check Current Inventory"
+            "Check Current Inventory",
+            "Make Lemonade"
         };
         public Weather Actual
         {
@@ -124,6 +125,11 @@ namespace LemonadeStand
                     ui.DisplayUserInventory(Iy);
                     Console.ReadLine();
                     break;
+                case "4":
+                    Iy.MakePitcher("Please select ingredient to make pitcher recipe");
+                    Console.ReadLine();
+                    DayMenu(weatherList, userInventory);
+                    break;
                 default:
                     Console.WriteLine("Please enter valid selection");
                     DayMenu(weatherList, userInventory);
@@ -200,6 +206,7 @@ namespace LemonadeStand
                 Console.WriteLine("Please enter a valid selection");
                 return GetUserItem();
             }
+
         }
         
         

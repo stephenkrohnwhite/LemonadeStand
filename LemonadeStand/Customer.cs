@@ -8,5 +8,7 @@ namespace LemonadeStand
 {
     class Customer
     {
+        private List<Products> productPreference = new List<Products>() { };
+
     }
 }
