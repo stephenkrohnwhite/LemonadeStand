@@ -40,12 +40,10 @@ namespace LemonadeStand
             // * 
             // * 
             // * 
-            // //3. Create weather
-            // Conditions
-            // temperature
-            // 4. weather forcast - 1 day, 7 days
-            // probability higher closer to current day
-            // * 
+            // * TO DO:
+            // * Add 2 SOLID principles in comments
+            // * Add database for high scores
+
 
             Random r = new Random();
             Weather wr = new Weather(r);

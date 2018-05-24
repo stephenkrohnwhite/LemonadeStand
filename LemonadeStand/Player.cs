@@ -10,7 +10,18 @@ namespace LemonadeStand
     {
         Inventory sy = new Inventory();
         UserInterface ui = new UserInterface();
-
+        private int score;
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+            set
+            {
+                score = value;
+            }
+        }
         private string playerName;
         public string PlayerName
         {

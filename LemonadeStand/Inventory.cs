@@ -106,6 +106,7 @@ namespace LemonadeStand
             PitcherRecipe.Add(new Products { Name = "Lemons", Quantity = 0.00, Unit = "lemons" });
             PitcherRecipe.Add(new Products { Name = "Sugar", Quantity = 0.00, Unit = "lbs" });
             PitcherRecipe.Add(new Products { Name = "Ice", Quantity = 0.00, Unit = "lbs" });
+            Pitcher = 0;
             Ingredients = GetIngredients();
         }
         public void AddToInventory(string storeItem, double quantity)
@@ -350,9 +351,9 @@ namespace LemonadeStand
         //method should use a while loop for while cups>0 && pitchers>0 we add price/cup to money and
         //subtract cups and pitchers
 
-        public void SellLemonade(int buyingCustomers)
+        public void InventoryAdjuster(int buyingCustomers)
         {
-            while(BackStock[3].Quantity > 0 || Pitcher > 0 || buyingCustomers > 0)
+            while(BackStock[3].Quantity > 0 && Pitcher > 0 && buyingCustomers > 0)
             {
                 Money += PricePerCup;
                 BackStock[3].Quantity--;

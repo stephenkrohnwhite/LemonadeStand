@@ -16,6 +16,7 @@ namespace LemonadeStand
         private List<Weather> forcast;
         private int daysLeft;
         private Inventory iy;
+        
         public Player Pr
         {
             get
@@ -94,8 +95,15 @@ namespace LemonadeStand
                 Iy = dy.Iy;
                // Console.WriteLine(Iy.Money);
                 counter--;
-            }    
+            }
+            ScoreKeeper(Iy, pr);
+            ui.DisplayFinalScore(pr);
             Console.ReadKey();
+        }
+        public void ScoreKeeper(Inventory playerInventory, Player user)
+        {
+            int roundMoney = Convert.ToInt32(playerInventory.Money);
+            user.Score = roundMoney * 100;
         }
         public void SetGameType()
         {

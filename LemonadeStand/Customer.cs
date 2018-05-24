@@ -94,7 +94,7 @@ namespace LemonadeStand
             }
             return todaysCustomers;
         }
-        public void RemoveCustomers(List<Customer> potentialBuyers)
+        public List<Customer> RemoveCustomers (List<Customer> potentialBuyers)
         {
           
                 for (int i = 0; i < potentialBuyers.Count; i++)
@@ -104,16 +104,34 @@ namespace LemonadeStand
                         potentialBuyers.Remove(potentialBuyers[i]);
                     }
                 }
+            return potentialBuyers;
             
         }
-        public void CustomerChoice(Weather day, Random r, List<Customer> buyers)
+        public List<Customer> CustomerChoice(Weather day, Random r, List<Customer> buyers, Inventory player)
         {
             for(int i=0; i< buyers.Count; i++)
             {
-                buyers[i].BuyLemonade = MakeChoice(day, r);
+                buyers[i].BuyLemonade = MakeWeatherChoice(day, r);
             }
+            for(int i=0; i<buyers.Count; i++)
+            {
+                buyers[i].BuyLemonade = MakePriceChoice(day, r, player);
+            }
+            return buyers;
         }
-        public bool MakeChoice(Weather day, Random r)
+
+
+        private bool MakePriceChoice(Weather day, Random r, Inventory player)
+        {
+            int priceModulator = Convert.ToInt32(day.Temp/(player.PricePerCup * 10));
+            if(r.Next(0, priceModulator)>4)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool MakeWeatherChoice(Weather day, Random r)
         {
             int chance = day.Temp / 2;
             bool choice = ProbabilityScaler(chance, r);

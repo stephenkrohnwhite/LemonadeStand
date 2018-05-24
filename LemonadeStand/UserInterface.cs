@@ -121,6 +121,19 @@ namespace LemonadeStand
             string selection = Console.ReadLine();
             return selection;
         }
-        
+        public void ShowDayResults(Inventory player, int cupsSold, double moneyEarned)
+        {
+            Console.WriteLine("Here's your return from today:\r\nYou sold "+cupsSold+" cups today and made $"+moneyEarned+"!\r\n" +
+                "Current inventory:\r\n$"+player.Money);
+            for(int i=0; i <player.BackStock.Count; i++)
+            {
+                Console.WriteLine(player.BackStock[i].Quantity + " "+player.BackStock[i].Name);
+            }
+            Console.ReadLine();
+        }
+        public void DisplayFinalScore(Player user)
+        {
+            Console.WriteLine("Your Final Score: "+user.Score+"!");
+        }
     }
 }

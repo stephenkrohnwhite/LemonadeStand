@@ -85,7 +85,8 @@ namespace LemonadeStand
         //1. Forcast
         //2. Current inventory
         //3. store - purchase
-        //4. start
+        //4. Make Lemonade
+        //5. Sell
         //start will make the user set a recipe, allow user to return to store if they need more ingredients
         //once they have their recipe set, they can begin the day, 
         //display current weather 
@@ -134,10 +135,8 @@ namespace LemonadeStand
                     DayMenu(weatherList, userInventory, r);
                     break;
                 case "5":
-                    cr = new Customer(Actual, r);
-                    int customers = GetCustomers(Actual, r, cr);
-                    Iy.SellLemonade(customers);
-                    ui.DisplayUserInventory(Iy);
+                    //need to add method to prevent game from continuing before user has created recipe
+                    SellLemonade(r);
                     Console.ReadLine();
                     break;
                 default:
@@ -148,11 +147,19 @@ namespace LemonadeStand
             Console.Clear();
             DayMenu(weatherList, userInventory, r);
         }
+        public void SellLemonade(Random r)
+        {
+            cr = new Customer(Actual, r);
+            int customers = GetCustomers(Actual, r, cr);
+            Iy.InventoryAdjuster(customers);
+            ui.ShowDayResults(Iy, customers, iy.Money);
+        }
         public int GetCustomers(Weather day, Random r, Customer c)
         {
             List<Customer> people = new List<Customer>() { };
             people = c.NumberOfPeople(day, r);
-            c.RemoveCustomers(people);
+            people = c.CustomerChoice(day, r, people, Iy);
+            people = c.RemoveCustomers(people);
             return people.Count;
 
         }
