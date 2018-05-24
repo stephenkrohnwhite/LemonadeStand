@@ -22,7 +22,8 @@ namespace LemonadeStand
             "Display Weather Forcast",
             "Go to Store",
             "Check Current Inventory",
-            "Make Lemonade"
+            "Make Lemonade",
+            "Start Selling!"
         };
         public Weather Actual
         {
@@ -94,20 +95,19 @@ namespace LemonadeStand
             wr = new Weather(r);
             actual = new Weather(r);
             se = new Store();
-            cr = new Customer();
             ui = new UserInterface();
             iy = userInventory;
             forcast = wr.WeatherForcast(initializer, 7, r);
             Actual = wr.CreateDayWeather(forcast[0], r, 6);
         }
-        public void RunDay(List<Weather> weatherForcast, Inventory userInventory, Weather actual)
+        public void RunDay(List<Weather> weatherForcast, Inventory userInventory, Weather actual, Random r)
         {
             {
-                DayMenu(forcast, userInventory);
+                DayMenu(forcast, userInventory, r);
             }
             //ui.DisplayCurrentWeather(actual);
         }
-        public void DayMenu(List<Weather> weatherList, Inventory userInventory)
+        public void DayMenu(List<Weather> weatherList, Inventory userInventory, Random r)
         {
             Console.Clear();
             string selection = ui.SelectFromList("Please Select from the following list:", menu);
@@ -117,29 +117,46 @@ namespace LemonadeStand
                 case "1":
                     ui.DisplayForcast(Forcast);
                     Console.ReadLine();
+                    DayMenu(weatherList, userInventory, r);
                     break;
                 case "2":
-                    GetUserPurchase(weatherList, userInventory);
+                    GetUserPurchase(weatherList, userInventory, r);
+                    DayMenu(weatherList, userInventory, r);
                     break;
                 case "3":
                     ui.DisplayUserInventory(Iy);
                     Console.ReadLine();
+                    DayMenu(weatherList, userInventory, r);
                     break;
                 case "4":
                     Iy.MakePitcher("Please select ingredient to make pitcher recipe");
                     Console.ReadLine();
-                    DayMenu(weatherList, userInventory);
+                    DayMenu(weatherList, userInventory, r);
+                    break;
+                case "5":
+                    cr = new Customer(Actual, r);
+                    int customers = GetCustomers(Actual, r, cr);
+                    Iy.SellLemonade(customers);
+                    ui.DisplayUserInventory(Iy);
+                    Console.ReadLine();
                     break;
                 default:
                     Console.WriteLine("Please enter valid selection");
-                    DayMenu(weatherList, userInventory);
+                    DayMenu(weatherList, userInventory, r);
                     break;
             }
             Console.Clear();
-            DayMenu(weatherList, userInventory);
+            DayMenu(weatherList, userInventory, r);
         }
-        
-        public void GetUserPurchase(List<Weather> weatherList, Inventory userInventory)
+        public int GetCustomers(Weather day, Random r, Customer c)
+        {
+            List<Customer> people = new List<Customer>() { };
+            people = c.NumberOfPeople(day, r);
+            c.RemoveCustomers(people);
+            return people.Count;
+
+        }
+        public void GetUserPurchase(List<Weather> weatherList, Inventory userInventory, Random r)
         {
             int userSelection = GetUserItem();
             BuyItem(userSelection);
@@ -151,10 +168,10 @@ namespace LemonadeStand
                 switch (option)
                 {
                     case "1":
-                        GetUserPurchase(weatherList, userInventory);
+                        GetUserPurchase(weatherList, userInventory, r);
                         break;
                     case "2":
-                        DayMenu(weatherList,userInventory);
+                        DayMenu(weatherList,userInventory, r);
                         break;
                     default:
                         break;

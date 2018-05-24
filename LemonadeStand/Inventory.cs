@@ -349,13 +349,15 @@ namespace LemonadeStand
         //need to construct method for taking in number of customers who are willing to purchase lemonade
         //method should use a while loop for while cups>0 && pitchers>0 we add price/cup to money and
         //subtract cups and pitchers
+
         public void SellLemonade(int buyingCustomers)
         {
-            while(BackStock[3].Quantity > 0 || Pitcher > 0)
+            while(BackStock[3].Quantity > 0 || Pitcher > 0 || buyingCustomers > 0)
             {
                 Money += PricePerCup;
                 BackStock[3].Quantity--;
                 Pitcher--;
+                buyingCustomers--;
             }
         }
         

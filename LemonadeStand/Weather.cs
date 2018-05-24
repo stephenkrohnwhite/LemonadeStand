@@ -20,6 +20,10 @@ namespace LemonadeStand
             {
                 return conditions;
             }
+            set
+            {
+                conditions = value;
+            }
         }
         public int Temp
         {
@@ -91,7 +95,7 @@ namespace LemonadeStand
         public void SetConditions(Random rdm)
         {
             int randomValue = rdm.Next(0, weatherTypes.Count);
-            conditions = weatherTypes[randomValue];
+            Conditions = weatherTypes[randomValue];
         }
         public void SetTemp(int minValue, int maxValue, Random rdm)
         {

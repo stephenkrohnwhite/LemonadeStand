@@ -89,7 +89,7 @@ namespace LemonadeStand
             while (daysLeft > 0)
             {
                 dy = new Day(r, Forcast, Iy);
-                dy.RunDay(dy.Forcast, Iy, dy.Actual);
+                dy.RunDay(dy.Forcast, Iy, dy.Actual, r);
                 Forcast = dy.Forcast;
                 Iy = dy.Iy;
                // Console.WriteLine(Iy.Money);

@@ -8,10 +8,33 @@ namespace LemonadeStand
 {
     class Customer
     {
-        private List<Products> productPreference = new List<Products>() { };
         private List<Customer> dayCustomers = new List<Customer>() { };
         private bool buyLemonade;
+        private int limit;
         private List<int> tempValues = new List<int>() { 80, 70, 60 };
+        private int  customerLimit = 125;
+        public int Limit
+        {
+            get
+            {
+                return limit;
+            }
+            set
+            {
+                limit = value;
+            }
+        }
+        public int CustomerLimit
+        {
+            get
+            {
+                return customerLimit;
+            }
+            set
+            {
+                customerLimit = value;
+            }
+        }
         public bool BuyLemonade
         {
             get
@@ -23,17 +46,7 @@ namespace LemonadeStand
                 buyLemonade = value;
             }
         }
-        public List<Products> ProductPreference
-        {
-            get
-            {
-                return productPreference;
-            }
-            set
-            {
-                productPreference = value;
-            }
-        }
+        
         public List<Customer> DayCustomers
         {
             get
@@ -51,42 +64,71 @@ namespace LemonadeStand
         //will randomly select whether or not someone will buy. will return bool
         public Customer(Weather todaysWeather, Random r)
         {
+            Limit = 25;
             BuyLemonade = false;
-            this.BuyLemonade = MakeChoice(todaysWeather, tempValues);
+            
         }
-        public void NumberOfCustomers(Weather day, double instantiator, Random r)
+        public List<Customer> NumberOfPeople(Weather day, Random r)
         {
+            List<Customer> customerList = new List<Customer>() { };
             if(day.Conditions == "Sunny")
             {
-                AddCustomers(instantiator, day, r);
+               customerList = AddCustomers(CustomerLimit, day, r);
             }
             else if(day.Conditions == "Cloudy")
             {
-                AddCustomers(instantiator * .66, day, r);
+                customerList = AddCustomers(CustomerLimit * .66, day, r);
             }
             else if(day.Conditions == "Rainy")
             {
-                AddCustomers(instantiator * .33, day, r);
+                customerList =  AddCustomers(CustomerLimit * .33, day, r);
             }
+            return customerList;
         }
-        public void AddCustomers(double generator, Weather day, Random r)
+        public List<Customer> AddCustomers(double generator, Weather day, Random r)
         {
+            List<Customer> todaysCustomers = new List<Customer>() { };
             for(int i=0; i<generator;i++)
             {
-                DayCustomers.Add(new Customer(day, r));
+                todaysCustomers.Add(new Customer(day, r));
+            }
+            return todaysCustomers;
+        }
+        public void RemoveCustomers(List<Customer> potentialBuyers)
+        {
+          
+                for (int i = 0; i < potentialBuyers.Count; i++)
+                {
+                    if (BuyLemonade == false)
+                    {
+                        potentialBuyers.Remove(potentialBuyers[i]);
+                    }
+                }
+            
+        }
+        public void CustomerChoice(Weather day, Random r, List<Customer> buyers)
+        {
+            for(int i=0; i< buyers.Count; i++)
+            {
+                buyers[i].BuyLemonade = MakeChoice(day, r);
             }
         }
-        public bool MakeChoice(Weather day, List<int> tempValues, Random r)
+        public bool MakeChoice(Weather day, Random r)
         {
             int chance = day.Temp / 2;
-            if(day.Temp > tempValue[0])
-            {
-                BuyLemonade = true;
-            }
+            bool choice = ProbabilityScaler(chance, r);
+            return choice;
         }
-        public bool ProbabilityScaler(int prob)
+        public bool ProbabilityScaler(int probabiityVariable, Random r)
         {
-
+            if (r.Next(0,probabiityVariable) > limit)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
