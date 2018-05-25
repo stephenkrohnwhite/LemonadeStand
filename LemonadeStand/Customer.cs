@@ -68,6 +68,10 @@ namespace LemonadeStand
             BuyLemonade = false;
             
         }
+        //SOLID Principle:
+        //Dependency - by using argument to pass in a Weather object, I don't need an instantiation of a weather object in the Customer class.
+        //I can use the Weather object's  properties to access the weather conditions and I could call this method any place where there is an
+        //existing Weather object.
         public List<Customer> NumberOfPeople(Weather day, Random r)
         {
             List<Customer> customerList = new List<Customer>() { };

@@ -16,6 +16,18 @@ namespace LemonadeStand
         private List<Weather> forcast;
         private int daysLeft;
         private Inventory iy;
+        private List<string> rules;
+        public List<string> Rules
+        {
+            get
+            {
+                return rules;
+            }
+            set
+            {
+                rules = value;
+            }
+        }
         
         public Player Pr
         {
@@ -79,10 +91,19 @@ namespace LemonadeStand
             pr = new Player();
             iy = new Inventory();
             ui = new UserInterface();
+            Rules = new List<string>
+            {
+                "Player will select length of game",
+                "Player must buy ingredients from store and use the inredients to craft a recipe for a pitcher",
+                "Player will then set a price per cup of lemonade and begin selling",
+                "The weather and the price of the lemonade will impact how many people will buy lemonade",
+                "The goal is to earn the most money possible by the end of the game"
+            };
 
         }
         public void RunGame(Random r, List<Weather> start)
         {
+            ui.SelectFromList("Rules of Lemonade Stand", Rules);
             int counter = daysLeft;
             Forcast = start;
             SetGameType();

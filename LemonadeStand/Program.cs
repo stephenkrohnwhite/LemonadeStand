@@ -38,10 +38,10 @@ namespace LemonadeStand
             // * DAY ==> WEATHER, STORE, CUSTOMER, UI
             // * 
             // * 
-            // * 
-            // * 
+            // * SOLID Principles: 
+            // * 1. UserInterface 51,
+            // * 2. Customer 71 
             // * TO DO:
-            // * Add 2 SOLID principles in comments
             // * Add database for high scores
 
 

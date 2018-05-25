@@ -48,6 +48,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("Today's conditions: " + currentWeather.Temp + "°F and " + currentWeather.Conditions + ".");
         }
+        //SOLID Principle:
+        //SelectFromList method uses parameters to any message to set up the list and takes in a list<string> to dislay with
+        //numbers. This is an example of Open/Closed. You cant and dont need to modidy the method, but its open and general to take and list
+        //as an argument. It also reduces dependency by not relying on any specific classes within the method.
         public string SelectFromList(string message, List<string> list)
         {
             Console.WriteLine(message);
