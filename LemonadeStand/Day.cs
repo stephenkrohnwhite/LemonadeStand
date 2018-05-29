@@ -145,7 +145,6 @@ namespace LemonadeStand
                     break;
             }
             Console.Clear();
-            DayMenu(weatherList, userInventory, r);
         }
         public void SellLemonade(Random r)
         {

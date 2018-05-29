@@ -5,3 +5,8 @@ C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\obj\Debug\Le
 C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.csproj.CoreCompileInputs.cache
 C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.exe
 C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.pdb
+C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\bin\Debug\EntityFramework.dll
+C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\bin\Debug\EntityFramework.xml
+C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\steph\Documents\DevCodeCamp\C#\LemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.csproj.CopyComplete

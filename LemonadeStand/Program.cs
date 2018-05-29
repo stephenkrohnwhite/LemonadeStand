@@ -44,15 +44,20 @@ namespace LemonadeStand
             // * TO DO:
             // * Add database for high scores
 
-
+            
             Random r = new Random();
             Weather wr = new Weather(r);
             List<Weather> initializer = wr.InitializeWeather(7, r);
             Game gm = new Game(r, initializer);
 
             gm.RunGame(r, initializer);
+            using (SqlConnect sql = new SqlConnect())
+            {
+                sql.Score.Add(gm.Pr.Score);
+                sql.SaveChanges();
 
-            
+            }
+
 
 
             Console.ReadKey();
