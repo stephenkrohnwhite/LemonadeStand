@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Store
+    public class Store
     {
         private List<Products> stock = new List<Products>() { }; 
         public List<Products> Stock
@@ -14,6 +14,10 @@ namespace LemonadeStand
             get
             {
                 return stock;
+            }
+            set
+            {
+                stock = value;
             }
         }
         
