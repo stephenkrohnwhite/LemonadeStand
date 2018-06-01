@@ -119,16 +119,12 @@ namespace LemonadeStand
             }
             ScoreKeeper(Iy, pr);
             ui.DisplayFinalScore(Pr);
-            using (PlayerInfoDbContext db = new PlayerInfoDbContext())
+            using (var db = new Model1())
             {
-
-                db.PlayerName.Add(new Player() { PlayerName = Pr.PlayerName });
-                db.Score.Add(new Player() { Score = Pr.Score });
+                db.HighScores.Add(new HighScore() { NAME = Pr.PlayerName, SCORE = (float)Pr.Score });
                 db.SaveChanges();
-
             }
-            
-            Console.ReadKey();
+                Console.ReadKey();
         }
         public void ScoreKeeper(Inventory playerInventory, Player user)
         {

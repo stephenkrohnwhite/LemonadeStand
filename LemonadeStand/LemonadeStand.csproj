@@ -54,8 +54,9 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="HighScore.cs" />
     <Compile Include="Inventory.cs" />
-    <Compile Include="SqlConnect.cs" />
+    <Compile Include="Model1.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="Program.cs" />
