@@ -80,17 +80,7 @@ namespace LemonadeStand
                 stock = value;
             }
         }
-        //To do for Day:
-        //Need to build mainmenu to show:
-        //1. Forcast
-        //2. Current inventory
-        //3. store - purchase
-        //4. Make Lemonade
-        //5. Sell
-        //start will make the user set a recipe, allow user to return to store if they need more ingredients
-        //once they have their recipe set, they can begin the day, 
-        //display current weather 
-        //then display results of customers who choose to buy lemonade
+      
         public Day(Random r, List<Weather> initializer, Inventory userInventory)
         {
             wr = new Weather(r);

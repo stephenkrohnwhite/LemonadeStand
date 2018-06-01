@@ -76,5 +76,20 @@ namespace LemonadeStandTest
             // assert
             Assert.AreEqual(expectedResult, actualResult);
         }
+        [TestMethod]
+        public void Get_Stock_Item_Return_Input_Times_Item_Quantity()
+        {
+            // arrange
+            Store MyStore = new Store();
+            string itemName = "Ice";
+            int input = 2;
+            double expectedResult = 100;
+
+            // act
+            double actualResult = MyStore.PurchaseQuantity(input, itemName);
+
+            // assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }

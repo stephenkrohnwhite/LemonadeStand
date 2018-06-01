@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Inventory
+    public class Inventory
     {
         UserInterface ui = new UserInterface();
         private double money = 200.00;
@@ -109,13 +109,13 @@ namespace LemonadeStand
             Pitcher = 0;
             Ingredients = GetIngredients();
         }
-        public void AddToInventory(string storeItem, double quantity)
+        public void AddToInventory(string storeItem, double amount)
         {
             for(int i=0; i<backStock.Count; i++)
             {
                 if(storeItem == backStock[i].Name)
                 {
-                    backStock[i].Quantity += quantity;
+                    backStock[i].Quantity += amount;
                 }
             }
         }
@@ -156,7 +156,7 @@ namespace LemonadeStand
                 case "4":
                     ui.DisplayRecipe(PitcherRecipe);
                     BuildPitcher(selection, message);
-                    SetPricePerCup();
+                    PricePerCupBuilder();
                     break;
                 case "5":
                     ui.DisplayUserStock(backStock);
@@ -174,21 +174,38 @@ namespace LemonadeStand
                     break;
             }
         }
-
-        private void SetPricePerCup()
+        public void PricePerCupBuilder()
         {
-            string entry = ui.GetUserString("Please enter price per cup (select value between 50¢ and $2.50)");
+            string entry = GetPricePerCup();
             double price = SelectDoubleValidator(entry);
-            if(price < .5 || price >2.5)
-            {
-                Console.WriteLine("Please enter valid price");
-                SetPricePerCup();
-            }
-            else
+            bool result = PriceValidator(price);
+            if(result == true)
             {
                 PricePerCup = price;
             }
+            else
+            {
+                PricePerCupBuilder();
+            }
         }
+        public string GetPricePerCup()
+        {
+            string entry = ui.GetUserString("Please enter price per cup (select value between 50¢ and $2.50)");
+            return entry;
+        }
+        public bool PriceValidator(double entry)
+        {
+            if (entry < .5 || entry > 2.5)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+      
 
         private void DeleteRecipe()
         {
@@ -242,7 +259,7 @@ namespace LemonadeStand
             }
             
         }
-        private bool ValidateAmount(double total, int index)
+        public bool ValidateAmount(double total, int index)
         {
             for(int i = 0; i<BackStock.Count; i++)
             {

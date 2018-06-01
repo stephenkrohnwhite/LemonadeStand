@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Player
+    public class Player
     {
         Inventory sy = new Inventory();
         UserInterface ui = new UserInterface();
@@ -27,9 +27,14 @@ namespace LemonadeStand
         {
             get
             {
-                return PlayerName;
+                return playerName;
+            }
+            set
+            {
+                playerName = value;
             }
         }
+        
         public Player()
         {
             playerName = ui.GetUserString("Please enter your name");

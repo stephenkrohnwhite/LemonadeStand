@@ -82,7 +82,7 @@ namespace LemonadeStand
                 iy = value;
             }
         }
-        public List<string> gameLength = new List<string>() { "7","14","30"};
+        public List<string> gameLength = new List<string>() { "1","14","30"};
        
 
         public Game(Random r, List<Weather> start)
@@ -104,11 +104,11 @@ namespace LemonadeStand
         public void RunGame(Random r, List<Weather> start)
         {
             ui.SelectFromList("Rules of Lemonade Stand", Rules);
-            int counter = daysLeft;
             Forcast = start;
             SetGameType();
+            int counter = daysLeft;
             Console.Clear();
-            while (daysLeft > 0)
+            while (counter > 0)
             {
                 dy = new Day(r, Forcast, Iy);
                 dy.RunDay(dy.Forcast, Iy, dy.Actual, r);
@@ -118,7 +118,16 @@ namespace LemonadeStand
                 counter--;
             }
             ScoreKeeper(Iy, pr);
-            ui.DisplayFinalScore(pr);
+            ui.DisplayFinalScore(Pr);
+            using (PlayerInfoDbContext db = new PlayerInfoDbContext())
+            {
+
+                db.PlayerName.Add(new Player() { PlayerName = Pr.PlayerName });
+                db.Score.Add(new Player() { Score = Pr.Score });
+                db.SaveChanges();
+
+            }
+            
             Console.ReadKey();
         }
         public void ScoreKeeper(Inventory playerInventory, Player user)
